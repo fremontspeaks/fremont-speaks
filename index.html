@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fremont Speaks — Student-Led Reviews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Economica:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <div class="nav-logo-box">Site<br>Logo</div>
+    <a href="/" class="nav-site-name">FREMONT SPEAKS</a>
+  </div>
+  <div class="nav-right">
+    <a href="/" class="nav-home-link">HOME</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-dropdown" id="nav-dropdown">
+      <a href="/pages/find-a-teacher">Find a Teacher</a>
+      <a href="/pages/feedback">Submit Feedback</a>
+      <a href="/pages/incident-report">File a Report</a>
+      <a href="/pages/student-advocacy">Advocacy &amp; Resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="campus-banner">
+  <img src="images/campus.jpg" alt="John C. Fremont High School campus">
+</div>
+
+<div class="tile-grid">
+
+  <!-- Row 1: Site name + Tagline -->
+  <div class="tile tile-beige">
+    <div class="t-hero">FREMONT<br>SPEAKS UP</div>
+  </div>
+  <div class="tile tile-black">
+    <div class="t-heading">STUDENT-LED REVIEWS FOR A BETTER FREMONT</div>
+  </div>
+
+  <!-- Row 2: Featured Teacher + Welcome -->
+  <div class="tile tile-black" id="featured-teacher-tile">
+    <div class="t-label">FEATURED TEACHER:</div>
+    <div class="loading" style="padding:1rem 0; background:transparent; color:rgba(255,255,255,0.5); font-size:0.9rem;">Loading…</div>
+  </div>
+  <div class="tile tile-beige">
+    <div class="t-heading" style="margin-bottom:0.75rem;">WELCOME!</div>
+    <p class="t-body">
+      <strong style="color:var(--red);">Student voices matter.</strong>
+      That's why we're bringing this platform to YOU: to unite, express ideas freely,
+      and shape the future of Fremont!
+    </p>
+  </div>
+
+  <!-- Row 3: Mission + Staff Spotlight -->
+  <div class="tile tile-beige" id="mission">
+    <div class="t-heading" style="color:var(--red); margin-bottom:0.75rem;">OUR MISSION</div>
+    <p class="t-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  </div>
+  <div class="tile tile-black" id="staff-spotlight-tile">
+    <div class="t-label">STAFF SPOTLIGHT:</div>
+    <div class="loading" style="padding:1rem 0; background:transparent; color:rgba(255,255,255,0.5); font-size:0.9rem;">Loading…</div>
+  </div>
+
+  <!-- Row 4: CTA buttons -->
+  <a href="#mission" class="tile tile-black tile-btn">
+    <div class="t-heading">LEARN MORE</div>
+  </a>
+  <a href="/pages/find-a-teacher" class="tile tile-red tile-btn">
+    <div class="t-heading">GET STARTED</div>
+  </a>
+
+</div>
+
+<footer>
+  <p>Fremont Speaks — Student-Led Reviews For a Better Fremont</p>
+  <p>This site is not affiliated with nor managed by John C. Fremont High. Any feedback expressed on this website does not necessarily reflect the beliefs of Fremont Speaks.</p>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

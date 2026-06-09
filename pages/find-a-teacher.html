@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Teacher — Fremont Speaks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Economica:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <div class="nav-logo-box">Site<br>Logo</div>
+    <a href="/" class="nav-site-name">FREMONT SPEAKS</a>
+  </div>
+  <input type="search" class="nav-search" id="nav-search" placeholder="Search…" autocomplete="off">
+  <div class="nav-right">
+    <a href="/pages/find-a-teacher" class="nav-home-link">FIND A TEACHER</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-dropdown" id="nav-dropdown">
+      <a href="/">Home</a>
+      <a href="/pages/feedback">Submit Feedback</a>
+      <a href="/pages/incident-report">File a Report</a>
+      <a href="/pages/student-advocacy">Advocacy &amp; Resources</a>
+    </div>
+  </div>
+</nav>
+
+<div class="tile-grid">
+  <div class="tile tile-beige tile-span2" style="min-height:100px; justify-content:center; align-items:center;">
+    <div class="t-heading" style="text-align:center; font-size:clamp(2rem,5vw,4rem);">FIND A TEACHER</div>
+  </div>
+</div>
+
+<div class="page-wrap" id="dept-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:var(--gap);">
+  <div class="loading">Loading teachers…</div>
+</div>
+
+<footer>
+  <p>Fremont Speaks — Student-Led Reviews For a Better Fremont</p>
+  <p>This site is not affiliated with nor managed by John C. Fremont High. Any feedback expressed on this website does not necessarily reflect the beliefs of Fremont Speaks.</p>
+</footer>
+
+<script src="../js/nav.js"></script>
+<script src="../js/directory.js"></script>
+</body>
+</html>
