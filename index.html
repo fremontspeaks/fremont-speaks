@@ -34,10 +34,10 @@
   <img src="images/campus.jpg" alt="John C. Fremont High School campus">
 </div>
 
-<div class="tile-grid">
+<div class="tile-grid tile-grid-thirds">
 
   <!-- Row 1: Site name + Tagline -->
-  <div class="tile tile-beige">
+  <div class="tile tile-beige tile-span2">
     <div class="t-hero">FREMONT<br>SPEAKS UP</div>
   </div>
   <div class="tile tile-black">
@@ -49,7 +49,7 @@
     <div class="t-label">FEATURED TEACHER:</div>
     <div class="loading" style="padding:1rem 0; background:transparent; color:rgba(255,255,255,0.5); font-size:0.9rem;">Loading…</div>
   </div>
-  <div class="tile tile-beige">
+  <div class="tile tile-beige tile-span2">
     <div class="t-heading" style="margin-bottom:0.75rem;">WELCOME!</div>
     <p class="t-body">
       <strong style="color:var(--red);">Student voices matter.</strong>
@@ -59,9 +59,9 @@
   </div>
 
   <!-- Row 3: Mission + Staff Spotlight -->
-  <div class="tile tile-beige" id="mission">
+  <div class="tile tile-beige tile-span2" id="mission">
     <div class="t-heading" style="color:var(--red); margin-bottom:0.75rem;">OUR MISSION</div>
-    <p class="t-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p class="t-body">We created Fremont Speaks to empower students' voices and encourage activism in our community. As students, we have more power to shape school decisions than we may realize. This website and our team are dedicated to providing guidance, resources, and a platform for speaking up. Let's make Fremont's future brighter!</p>
   </div>
   <div class="tile tile-black" id="staff-spotlight-tile">
     <div class="t-label">STAFF SPOTLIGHT:</div>
@@ -69,17 +69,20 @@
   </div>
 
   <!-- Row 4: CTA buttons -->
-  <a href="#mission" class="tile tile-black tile-btn">
-    <div class="t-heading">LEARN MORE</div>
-  </a>
-  <a href="/pages/find-a-teacher" class="tile tile-red tile-btn">
-    <div class="t-heading">GET STARTED</div>
-  </a>
+  <div class="tile-span3" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--gap);">
+    <a href="#mission" class="tile tile-black tile-btn">
+      <div class="t-heading">LEARN MORE</div>
+    </a>
+    <a href="/pages/find-a-teacher" class="tile tile-red tile-btn">
+      <div class="t-heading">GET STARTED</div>
+    </a>
+  </div>
 
 </div>
 
 <footer>
   <p>Fremont Speaks — Student-Led Reviews For a Better Fremont</p>
+  <p>Want to get involved? Reach out to <a href="mailto:fremontspeaks@gmail.com" style="color:inherit;">fremontspeaks@gmail.com</a>!</p>
   <p>This site is not affiliated with nor managed by John C. Fremont High. Any feedback expressed on this website does not necessarily reflect the beliefs of Fremont Speaks.</p>
 </footer>
 
