@@ -595,6 +595,7 @@ footer p + p { margin-top: 0.3rem; font-size: 0.95rem; opacity: 0.5; }
 
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 700px) {
+  html { font-size: 15px; }
   .tile-grid { grid-template-columns: 1fr; }
   .tile-span2, .tile-span3 { grid-column: span 1; }
   .tile-inner-grid { grid-template-columns: 1fr; }
