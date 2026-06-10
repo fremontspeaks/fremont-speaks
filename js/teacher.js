@@ -60,7 +60,7 @@ async function init() {
     <!-- Row 1: Name/photo + Rating -->
     <div class="tile tile-beige" style="min-height:140px; justify-content:center;">
       <div class="t-heading" style="font-size:clamp(2.2rem,8cqi,5rem);">${esc(teacher.name)}</div>
-      <div style="color:var(--blue);font-size:clamp(0.9rem,2cqi,1.1rem);margin-top:0.4rem;">${esc(teacher.department)}</div>
+      <div style="color:var(--blue);font-size:clamp(0.9rem,2cqi,1.1rem);margin-top:0.4rem;">${esc(teacher.subject || teacher.department)}</div>
     </div>
     <div class="tile tile-blue" style="align-items:flex-start;">
       <div class="t-label">OVERALL QUALITY</div>

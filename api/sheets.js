@@ -67,12 +67,29 @@ async function fetchSheet(spreadsheetId, sheetName, apiKey) {
 
 function parseTeachers(rows) {
   const teachers = [];
+  let currentDept = '';
+
   for (const row of rows) {
+    const sectionHeader = (row[0] || '').trim();
     const name = (row[1] || '').trim();
-    const dept = (row[2] || '').trim();
+    const subject = (row[2] || '').trim();
+
+    // Column A non-empty = department section header row, not a teacher
+    if (sectionHeader) {
+      currentDept = sectionHeader;
+      continue;
+    }
+
     if (!name || name === 'default profile pic') continue;
-    const isStaff = STAFF_DEPTS.has(dept) || (!dept && !name.match(/^(Mr\.|Ms\.|Dr\.|Mrs\.)/i));
-    teachers.push({ name, department: dept || 'Other', type: isStaff ? 'staff' : 'teacher', slug: slugify(name) });
+
+    const isStaff = STAFF_DEPTS.has(currentDept) || STAFF_DEPTS.has(subject);
+    teachers.push({
+      name,
+      department: currentDept || 'Other',
+      subject,
+      type: isStaff ? 'staff' : 'teacher',
+      slug: slugify(name),
+    });
   }
   return teachers;
 }
