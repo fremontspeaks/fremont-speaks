@@ -85,21 +85,20 @@ async function init() {
         `).join('')}
       </ul>
     </div>
-    ${recommendPct !== null ? `
+    ${reviewCount ? `
     <div class="tile tile-beige" style="align-items:center;justify-content:center;text-align:center;">
       <div class="big-stat" style="color:var(--red);">${recommendPct}%</div>
       <div class="t-heading" style="font-size:1.6rem;margin-top:0.5rem;">WOULD RECOMMEND<br>THIS TEACHER</div>
-    </div>` : '<div class="tile tile-beige" style="opacity:0;pointer-events:none;"></div>'}
+    </div>
 
-    <!-- Row 3: Distribution (1/2) + CTA (1/2) -->
+    <!-- Row 3: Distribution (1/2) + CTA (1/2) — only when reviews exist -->
     <div class="tile-span3 tile-inner-grid">
-      ${reviewCount ? `
       <div class="tile tile-beige">
         <div class="t-heading" style="font-size:1.8rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
         <div class="dist-chart">
           ${[5,4,3,2,1].map(n => {
             const count = dist[n] || 0;
-            const pct = reviewCount ? Math.round(count / reviewCount * 100) : 0;
+            const pct = Math.round(count / reviewCount * 100);
             const labels = {5:'Awesome-5',4:'Great-4',3:'Good-3',2:'OK-2',1:'Awful-1'};
             return `
               <div class="dist-row">
@@ -110,14 +109,20 @@ async function init() {
             `;
           }).join('')}
         </div>
-      </div>` : '<div></div>'}
+      </div>
       <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
         <div class="t-heading" style="font-size:2rem;">READY TO SPEAK UP?</div>
         <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
           SUBMIT FEEDBACK
         </a>
       </div>
-    </div>
+    </div>` : `
+    <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
+      <div class="t-heading" style="font-size:2rem;">READY TO SPEAK UP?</div>
+      <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
+        SUBMIT FEEDBACK
+      </a>
+    </div>`}
   `;
 
   // Render reviews
