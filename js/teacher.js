@@ -60,22 +60,22 @@ async function init() {
     <!-- Row 1: Name (2/3) + Rating (1/3) -->
     <div class="tile tile-beige tile-span2" style="min-height:140px; justify-content:center;">
       <div class="t-heading" style="font-size:clamp(2.5rem,11cqi,7rem);">${esc(teacher.name)}</div>
-      <div style="color:var(--blue);font-size:clamp(0.9rem,2cqi,1.1rem);margin-top:0.4rem;">${esc(teacher.subject || teacher.department)}</div>
+      <div style="color:var(--blue);font-size:clamp(1.1rem,2cqi,1.4rem);margin-top:0.4rem;">${esc(teacher.subject || teacher.department)}</div>
     </div>
     <div class="tile tile-blue" style="align-items:flex-start;">
       <div class="t-label">OVERALL QUALITY</div>
       <div class="big-stat">${avgRating ? avgRating.toFixed(1) + '/5' : 'N/A'}</div>
-      ${reviewCount ? `<div style="opacity:0.8;margin-top:0.4rem;font-size:0.9rem;">Based on ${reviewCount} rating${reviewCount !== 1 ? 's' : ''}</div>` : ''}
+      ${reviewCount ? `<div style="opacity:0.8;margin-top:0.4rem;font-size:1.1rem;">Based on ${reviewCount} rating${reviewCount !== 1 ? 's' : ''}</div>` : ''}
     </div>
 
     <!-- Row 2: Tags (1/3) | Policies (1/3) | Recommend% (1/3) -->
     <div class="tile tile-blue">
-      <div class="t-heading" style="font-size:1.5rem;margin-bottom:0.75rem;">TOP TAGS</div>
+      <div class="t-heading" style="font-size:1.8rem;margin-bottom:0.75rem;">TOP TAGS</div>
       <div class="tag-list">${topTags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-      ${!topTags.length ? '<p style="opacity:0.6;font-size:0.85rem;margin-top:0.5rem;">(top 6)</p>' : '<p style="opacity:0.6;font-size:0.8rem;margin-top:0.5rem;">(top 6)</p>'}
+      ${!topTags.length ? '<p style="opacity:0.6;font-size:1rem;margin-top:0.5rem;">(top 6)</p>' : '<p style="opacity:0.6;font-size:1rem;margin-top:0.5rem;">(top 6)</p>'}
     </div>
     <div class="tile tile-black">
-      <div class="t-heading" style="font-size:1.5rem;margin-bottom:0.875rem;">CLASS POLICIES</div>
+      <div class="t-heading" style="font-size:1.8rem;margin-bottom:0.875rem;">CLASS POLICIES</div>
       <ul class="policy-list">
         ${POLICY_KEYS.map(key => `
           <li class="policy-item">
@@ -88,14 +88,14 @@ async function init() {
     ${recommendPct !== null ? `
     <div class="tile tile-beige" style="align-items:center;justify-content:center;text-align:center;">
       <div class="big-stat" style="color:var(--red);">${recommendPct}%</div>
-      <div class="t-heading" style="font-size:1.2rem;margin-top:0.5rem;">WOULD RECOMMEND<br>THIS TEACHER</div>
+      <div class="t-heading" style="font-size:1.6rem;margin-top:0.5rem;">WOULD RECOMMEND<br>THIS TEACHER</div>
     </div>` : '<div class="tile tile-beige" style="opacity:0;pointer-events:none;"></div>'}
 
     <!-- Row 3: Distribution (1/2) + CTA (1/2) -->
     <div class="tile-span3" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);">
       ${reviewCount ? `
       <div class="tile tile-beige">
-        <div class="t-heading" style="font-size:1.4rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
+        <div class="t-heading" style="font-size:1.8rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
         <div class="dist-chart">
           ${[5,4,3,2,1].map(n => {
             const count = dist[n] || 0;
@@ -112,7 +112,7 @@ async function init() {
         </div>
       </div>` : '<div></div>'}
       <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
-        <div class="t-heading" style="font-size:1.6rem;">READY TO SPEAK UP?</div>
+        <div class="t-heading" style="font-size:2rem;">READY TO SPEAK UP?</div>
         <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
           SUBMIT FEEDBACK
         </a>
