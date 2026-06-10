@@ -21,7 +21,7 @@ function renderFeatured(tile, person, label) {
     <div class="t-label">${label}</div>
     <a href="${href}" style="text-decoration:none;color:inherit;" class="featured-teacher">
       <div class="featured-photo-row">
-        <img src="/images/default-teacher.svg" alt="${esc(person.name)}" class="featured-photo" width="64" height="64">
+        <div class="featured-photo" style="display:flex;align-items:center;justify-content:center;font-size:2rem;line-height:1;">★</div>
         <div>
           <div class="featured-rating">${person.avgRating.toFixed(1)}/5</div>
           <div class="featured-rating-label">Quality</div>
