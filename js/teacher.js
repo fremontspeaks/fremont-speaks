@@ -117,7 +117,7 @@ async function init() {
         </a>
       </div>
     </div>` : `
-    <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
+    <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;align-self:start;">
       <div class="t-heading" style="font-size:2rem;">READY TO SPEAK UP?</div>
       <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
         SUBMIT FEEDBACK
