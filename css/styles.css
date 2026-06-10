@@ -73,6 +73,7 @@ footer { margin-top: auto; }
   text-align: center;
   line-height: 1.2;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .nav-site-name {
@@ -514,6 +515,15 @@ footer { margin-top: auto; }
 }
 
 .review-meta strong { color: var(--black); }
+
+.review-tile-question {
+  font-family: 'BebasNeueRounded', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+  margin-top: 0.75rem;
+  margin-bottom: 0.2rem;
+}
 
 .review-tile-body { font-size: 0.92rem; line-height: 1.65; }
 

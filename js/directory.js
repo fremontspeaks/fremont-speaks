@@ -7,6 +7,12 @@ async function init() {
   const grid = document.getElementById('dept-grid');
   const searchEl = document.getElementById('nav-search');
 
+  const q = new URLSearchParams(location.search).get('q');
+  if (q && searchEl) {
+    searchEl.value = q;
+    searchQuery = q.toLowerCase().trim();
+  }
+
   try {
     const [teachersRes, ratingsRes] = await Promise.all([
       fetch(`${API}?type=teachers`),
@@ -30,7 +36,7 @@ async function init() {
 
 function render(container, teachers) {
   const filtered = searchQuery
-    ? teachers.filter(t => t.name.toLowerCase().includes(searchQuery) || t.department.toLowerCase().includes(searchQuery))
+    ? teachers.filter(t => fuzzyMatch(searchQuery, t.name) || t.department.toLowerCase().includes(searchQuery))
     : teachers;
 
   if (!filtered.length) { container.innerHTML = '<div class="empty-state">No teachers found.</div>'; return; }
@@ -43,6 +49,33 @@ function render(container, teachers) {
 
   const depts = Object.keys(byDept).sort();
   container.innerHTML = depts.map(dept => deptTile(dept, byDept[dept])).join('');
+}
+
+function fuzzyMatch(query, name) {
+  const normalize = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+  const q = normalize(query);
+  const n = normalize(name);
+
+  if (n.includes(q)) return true;
+
+  const qTokens = q.split(/\s+/).filter(Boolean);
+  const nTokens = n.split(/\s+/).filter(Boolean);
+
+  return qTokens.every(qt => {
+    const threshold = qt.length <= 3 ? 0 : qt.length <= 6 ? 1 : 2;
+    return nTokens.some(nt => nt.includes(qt) || (threshold > 0 && levenshtein(qt, nt) <= threshold));
+  });
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = [];
+  for (let i = 0; i <= m; i++) dp[i] = [i];
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  return dp[m][n];
 }
 
 function deptTile(dept, teachers) {

@@ -52,11 +52,14 @@ Home
 
 ### Find a Teacher (Directory)
 - Browse/search teachers by department
+- Search supports fuzzy matching (1–2 typos tolerated depending on query length) via Levenshtein distance
+- Nav bar search on any page routes to `/pages/find-a-teacher?q=…` and pre-populates the search field
 - Each card links to that teacher's profile page
 
 ### Teacher Profile Page
 - Teacher name, photo (default pic if none submitted)
 - Review tiles — Padlet-style, resize vertically based on content length
+- Open-ended answers (teaching style, comments) are prefixed with their Google Form question text as a header label
 - "Ready to Speak Up" button → links to Feedback Form
 
 ### Staff Profile Page
@@ -77,19 +80,28 @@ Home
 
 ---
 
-## Data Model (Google Sheets — TBD)
+## Data Model (Google Sheets)
 
-Teacher/staff data will be pulled from a Google Spreadsheet. Suggested columns:
+### Teacher/Staff Sheet (`Sheet1`)
+Columns read: `row[1]` = name, `row[2]` = department. Type (`teacher` vs `staff`) is inferred from department.
 
-| Column | Description |
-|--------|-------------|
-| id | Unique identifier |
-| name | Full name |
-| department | Department/role |
-| type | `teacher` or `staff` |
-| photo_url | Google Drive link to photo (optional) |
-| rating | Aggregate rating (updated manually or via script) |
-| reviews | Review text entries (or separate sheet) |
+### Review Responses Sheet (`Form Responses 1`)
+Key columns (looked up by header text):
+
+| Header | Field |
+|--------|-------|
+| `Teacher's Name` | `name` |
+| `Administrator/Counselor's Name` | `name` (staff reviews) |
+| `Rating:` | `rating` (1–5) |
+| `What was your final grade?` | `grade` |
+| `Would you recommend this course?` | `recommended` |
+| `Applicable Tags` | `tags` |
+| *(contains "teaching style")* | `description` + `descLabel` |
+| *(contains "comments, questions")* | `comments` + `commentsLabel` |
+| `Publish? (Y/N)` | publish gate — only `y`/`yes` rows are returned |
+| 7 policy columns after `recommended` | `policies` map (Homework, Tardiness, etc.) |
+
+`descLabel` and `commentsLabel` are the raw Google Form question text from the sheet header row, returned alongside each review object so the frontend can render them as tile headers.
 
 ---
 
@@ -117,6 +129,8 @@ Teacher/staff data will be pulled from a Google Spreadsheet. Suggested columns:
 - Rounded corners throughout
 - Navigation links turn red (`#A00707`) and scale up on hover
 - Default teacher profile picture needed (placeholder image)
+- Nav bar top-right label reflects the current page (e.g. "FIND A TEACHER", "SUBMIT FEEDBACK", teacher's name on profile pages)
+- Site logo box and "FREMONT SPEAKS" wordmark in the nav both link to the homepage
 
 ---
 
@@ -140,7 +154,6 @@ Teacher/staff data will be pulled from a Google Spreadsheet. Suggested columns:
 ## Open Questions
 
 - [ ] Who manages the teacher data spreadsheet going forward?
-- [ ] What replaces "HOME" in the top-right nav on teacher profile pages — teacher name?
 - [ ] Should Teacher of the Week / Staff Spotlight update automatically or manually?
 - [ ] Accessibility requirements?
 
@@ -161,6 +174,10 @@ Teacher/staff data will be pulled from a Google Spreadsheet. Suggested columns:
 11. [ ] Connect fremontspeaks.com domain to Vercel
 12. [ ] Populate Student Advocacy page with real student content
 13. [ ] Featured Teacher / Staff Spotlight only appear once teachers have approved reviews in the sheet
+14. [x] Draft 2: fuzzy search on Find a Teacher (typo-tolerant, Levenshtein-based)
+15. [x] Draft 2: nav bar label reflects current page; teacher profile shows teacher name
+16. [x] Draft 2: site logo and wordmark link back to homepage
+17. [x] Draft 2: open-ended review answers show Google Form question text as header labels
 
 ---
 
@@ -192,7 +209,7 @@ Teacher/staff data will be pulled from a Google Spreadsheet. Suggested columns:
 | `type` | Returns |
 |--------|---------|
 | `teachers` | Array of `{ name, department, type, slug }` |
-| `reviews&teacher=NAME` | Array of review objects for that teacher |
+| `reviews&teacher=NAME` | Array of review objects for that teacher (each includes `descLabel` and `commentsLabel` — the raw form question text for those fields) |
 | `spotlight` | `{ teacherOfWeek, staffSpotlight }` — highest-rated teacher and staff with ≥1 approved review |
 | `ratings` | Map of `slug → { avgRating, reviewCount }` for all teachers with reviews |
 

@@ -34,9 +34,9 @@ Once deployed, lock down the API key so it only works from your domains:
 3. Wait for DNS propagation (up to 24 h)
 
 ### 3. Replace Site Logo Placeholder
-The nav currently shows a grey "Site Logo" box. Replace with an actual logo image:
+The nav currently shows a grey "Site Logo" box (`.nav-logo-box` — now an `<a href="/">` element). Replace with an actual logo image:
 1. Add the logo file to `/images/` (SVG or PNG recommended)
-2. In every HTML file, replace the `.nav-logo-box` div with `<img src="/images/logo.svg" ...>`
+2. In every HTML file, replace the `.nav-logo-box` anchor contents with `<img src="/images/logo.svg" alt="Fremont Speaks" ...>`
 
 ### 4. Approve Reviews in the Sheet
 The Featured Teacher and Staff Spotlight tiles on the homepage only populate once there is at least one approved review. In the reviews spreadsheet, set the **Publish?** column to `y` for any reviews you want to go live.

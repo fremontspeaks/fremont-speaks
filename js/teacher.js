@@ -25,6 +25,8 @@ async function init() {
   }
 
   document.title = `${teacherName} — Fremont Speaks`;
+  const navLabel = document.getElementById('nav-page-label');
+  if (navLabel) navLabel.textContent = teacherName.toUpperCase();
 
   const [teachersRes, reviewsRes] = await Promise.all([
     fetch(`${API}?type=teachers`),
@@ -143,8 +145,12 @@ function renderReviews(grid, reviews) {
           ${r.recommended !== undefined ? `<div>Would recommend: <strong>${r.recommended ? 'Yes' : 'No'}</strong></div>` : ''}
         </div>
       </div>
-      ${r.description ? `<div class="review-tile-body">${esc(r.description)}</div>` : ''}
-      ${r.comments ? `<div class="review-tile-body">${esc(r.comments)}</div>` : ''}
+      ${r.description ? `
+        ${r.descLabel ? `<div class="review-tile-question">${esc(r.descLabel)}</div>` : ''}
+        <div class="review-tile-body">${esc(r.description)}</div>` : ''}
+      ${r.comments ? `
+        ${r.commentsLabel ? `<div class="review-tile-question">${esc(r.commentsLabel)}</div>` : ''}
+        <div class="review-tile-body">${esc(r.comments)}</div>` : ''}
     </div>
   `).join('');
 }

@@ -94,6 +94,9 @@ function parseReviews(rows, teacherFilter) {
   // Policy columns (7 consecutive columns starting after "would you recommend")
   const policyCols = POLICY_KEYS.map((_, i) => recommendCol + 1 + i).filter(i => i < headers.length);
 
+  const descLabel    = descCol >= 0    ? (rows[0][descCol] || '').trim()    : '';
+  const commentsLabel = commentsCol >= 0 ? (rows[0][commentsCol] || '').trim() : '';
+
   const reviews = [];
   for (let r = 1; r < rows.length; r++) {
     const row = rows[r];
@@ -137,7 +140,9 @@ function parseReviews(rows, teacherFilter) {
       policies,
       tags: tagsCol >= 0 ? (row[tagsCol] || '').split(',').map(t => t.trim()).filter(Boolean) : [],
       description: descCol >= 0 ? (row[descCol] || '').trim() : '',
+      descLabel,
       comments: commentsCol >= 0 ? (row[commentsCol] || '').trim() : '',
+      commentsLabel,
       timestamp: row[0] || '',
     });
   }
