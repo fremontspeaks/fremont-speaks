@@ -70,10 +70,10 @@ footer { margin-top: auto; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.55rem;
+  font-family: 'BebasNeueRounded', sans-serif;
+  font-size: 1.1rem;
   color: var(--white);
-  text-align: center;
-  line-height: 1.2;
+  letter-spacing: 0.04em;
   flex-shrink: 0;
   text-decoration: none;
 }
@@ -596,6 +596,7 @@ footer p + p { margin-top: 0.3rem; font-size: 0.95rem; opacity: 0.5; }
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 700px) {
   html { font-size: 15px; }
+  .tile { min-height: 0; }
   .tile-grid { grid-template-columns: 1fr; }
   .tile-span2, .tile-span3 { grid-column: span 1; }
   .tile-inner-grid { grid-template-columns: 1fr; }
