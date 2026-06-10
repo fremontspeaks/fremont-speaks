@@ -68,13 +68,13 @@ async function init() {
       ${reviewCount ? `<div style="opacity:0.8;margin-top:0.4rem;font-size:0.9rem;">Based on ${reviewCount} rating${reviewCount !== 1 ? 's' : ''}</div>` : ''}
     </div>
 
-    <!-- Row 2: Tags (1/3) + Policies (2/3) -->
+    <!-- Row 2: Tags (1/3) | Policies (1/3) | Recommend% (1/3) -->
     <div class="tile tile-blue">
       <div class="t-heading" style="font-size:1.5rem;margin-bottom:0.75rem;">TOP TAGS</div>
       <div class="tag-list">${topTags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
       ${!topTags.length ? '<p style="opacity:0.6;font-size:0.85rem;margin-top:0.5rem;">(top 6)</p>' : '<p style="opacity:0.6;font-size:0.8rem;margin-top:0.5rem;">(top 6)</p>'}
     </div>
-    <div class="tile tile-black tile-span2">
+    <div class="tile tile-black">
       <div class="t-heading" style="font-size:1.5rem;margin-bottom:0.875rem;">CLASS POLICIES</div>
       <ul class="policy-list">
         ${POLICY_KEYS.map(key => `
@@ -85,38 +85,38 @@ async function init() {
         `).join('')}
       </ul>
     </div>
-
-    <!-- Row 3: Recommend (1/3, conditional) + Distribution (2/3, conditional) -->
     ${recommendPct !== null ? `
     <div class="tile tile-beige" style="align-items:center;justify-content:center;text-align:center;">
       <div class="big-stat" style="color:var(--red);">${recommendPct}%</div>
       <div class="t-heading" style="font-size:1.2rem;margin-top:0.5rem;">WOULD RECOMMEND<br>THIS TEACHER</div>
-    </div>` : ''}
-    ${reviewCount ? `
-    <div class="tile tile-beige${recommendPct === null ? ' tile-span3' : ' tile-span2'}">
-      <div class="t-heading" style="font-size:1.4rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
-      <div class="dist-chart">
-        ${[5,4,3,2,1].map(n => {
-          const count = dist[n] || 0;
-          const pct = reviewCount ? Math.round(count / reviewCount * 100) : 0;
-          const labels = {5:'Awesome-5',4:'Great-4',3:'Good-3',2:'OK-2',1:'Awful-1'};
-          return `
-            <div class="dist-row">
-              <span class="dist-label">${labels[n]}</span>
-              <div class="dist-bar-wrap"><div class="dist-bar" style="width:${pct}%"></div></div>
-              <span class="dist-count">${count}</span>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    </div>` : ''}
+    </div>` : '<div class="tile tile-beige" style="opacity:0;pointer-events:none;"></div>'}
 
-    <!-- Row 4: CTA full width -->
-    <div class="tile tile-span3 tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
-      <div class="t-heading" style="font-size:1.6rem;">READY TO SPEAK UP?</div>
-      <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
-        SUBMIT FEEDBACK
-      </a>
+    <!-- Row 3: Distribution (1/2) + CTA (1/2) -->
+    <div class="tile-span3" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);">
+      ${reviewCount ? `
+      <div class="tile tile-beige">
+        <div class="t-heading" style="font-size:1.4rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
+        <div class="dist-chart">
+          ${[5,4,3,2,1].map(n => {
+            const count = dist[n] || 0;
+            const pct = reviewCount ? Math.round(count / reviewCount * 100) : 0;
+            const labels = {5:'Awesome-5',4:'Great-4',3:'Good-3',2:'OK-2',1:'Awful-1'};
+            return `
+              <div class="dist-row">
+                <span class="dist-label">${labels[n]}</span>
+                <div class="dist-bar-wrap"><div class="dist-bar" style="width:${pct}%"></div></div>
+                <span class="dist-count">${count}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>` : '<div></div>'}
+      <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
+        <div class="t-heading" style="font-size:1.6rem;">READY TO SPEAK UP?</div>
+        <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;width:60%;padding:1.25rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:clamp(1.2rem,3cqi,1.8rem);letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;justify-content:center;">
+          SUBMIT FEEDBACK
+        </a>
+      </div>
     </div>
   `;
 
