@@ -586,9 +586,18 @@ footer {
 
 footer p + p { margin-top: 0.3rem; font-size: 0.95rem; opacity: 0.5; }
 
+/* ── Inner 2-col sub-grid (inside tile-span3) ── */
+.tile-inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+}
+
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 700px) {
   .tile-grid { grid-template-columns: 1fr; }
-  .tile-grid:not(.tile-grid-thirds) .tile-span2 { grid-column: span 1; }
+  .tile-span2, .tile-span3 { grid-column: span 1; }
+  .tile-inner-grid { grid-template-columns: 1fr; }
   .nav-search { display: none; }
+  .campus-banner { height: 200px; }
 }

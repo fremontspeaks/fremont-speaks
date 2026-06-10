@@ -92,7 +92,7 @@ async function init() {
     </div>` : '<div class="tile tile-beige" style="opacity:0;pointer-events:none;"></div>'}
 
     <!-- Row 3: Distribution (1/2) + CTA (1/2) -->
-    <div class="tile-span3" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);">
+    <div class="tile-span3 tile-inner-grid">
       ${reviewCount ? `
       <div class="tile tile-beige">
         <div class="t-heading" style="font-size:1.8rem;margin-bottom:1rem;">FEEDBACK DISTRIBUTION</div>
