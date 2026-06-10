@@ -112,7 +112,7 @@ async function init() {
     </div>` : ''}
     <div class="tile tile-blue" style="align-items:center;justify-content:center;text-align:center;gap:1rem;">
       <div class="t-heading" style="font-size:1.6rem;">READY TO SPEAK UP?</div>
-      <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;padding:0.75rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:1.1rem;letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;">
+      <a href="/pages/feedback" class="tile tile-black" style="min-height:auto;padding:0.75rem 2rem;text-decoration:none;border-radius:var(--radius);font-family:'BebasNeueRounded',sans-serif;font-size:1.1rem;letter-spacing:0.06em;color:var(--white);margin-top:0.25rem;white-space:nowrap;">
         SUBMIT FEEDBACK
       </a>
     </div>
