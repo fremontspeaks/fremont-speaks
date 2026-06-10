@@ -215,6 +215,7 @@ footer { margin-top: auto; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  container-type: inline-size;
 }
 
 .tile-span2 { grid-column: span 2; }
@@ -229,7 +230,7 @@ footer { margin-top: auto; }
 /* ── Typography ──────────────────────────────── */
 .t-hero {
   font-family: 'Abolition', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 13cqi, 9rem);
   line-height: 0.95;
   letter-spacing: 0.02em;
   color: var(--red);
@@ -237,21 +238,21 @@ footer { margin-top: auto; }
 
 .t-heading {
   font-family: 'Abolition', sans-serif;
-  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-size: clamp(1.6rem, 6cqi, 5rem);
   letter-spacing: 0.03em;
   line-height: 1;
 }
 
 .t-label {
   font-family: 'BebasNeueRounded', sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2cqi, 1.2rem);
   letter-spacing: 0.08em;
   opacity: 0.8;
   margin-bottom: 0.3rem;
 }
 
 .t-body {
-  font-size: 1rem;
+  font-size: clamp(1.1rem, 2.5cqi, 1.4rem);
   line-height: 1.7;
 }
 

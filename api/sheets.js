@@ -114,7 +114,7 @@ function parseReviews(rows, teacherFilter) {
     }
 
     const publish = (row[publishCol] || '').toLowerCase().trim();
-    if (publish !== 'y' && publish !== 'yes') continue;
+    const published = publish === 'y' || publish === 'yes';
 
     const ratingRaw = ratingCol >= 0 ? (row[ratingCol] || '') : '';
     const ratingNum = parseInt(ratingRaw);
@@ -139,10 +139,11 @@ function parseReviews(rows, teacherFilter) {
       recommended,
       policies,
       tags: tagsCol >= 0 ? (row[tagsCol] || '').split(',').map(t => t.trim()).filter(Boolean) : [],
-      description: descCol >= 0 ? (row[descCol] || '').trim() : '',
-      descLabel,
-      comments: commentsCol >= 0 ? (row[commentsCol] || '').trim() : '',
-      commentsLabel,
+      published,
+      description: published && descCol >= 0 ? (row[descCol] || '').trim() : '',
+      descLabel: published ? descLabel : '',
+      comments: published && commentsCol >= 0 ? (row[commentsCol] || '').trim() : '',
+      commentsLabel: published ? commentsLabel : '',
       timestamp: row[0] || '',
     });
   }

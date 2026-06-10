@@ -39,7 +39,7 @@ async function init() {
   const norm = s => s.toLowerCase().replace(/\s+/g,' ').replace(/[().]/g,'').trim();
   const teacher = teachers.find(t => norm(t.name) === norm(teacherName)) || { name: teacherName, department: '' };
 
-  // Compute aggregates
+  // Compute aggregates from all responses
   const reviewCount  = reviews.length;
   const avgRating    = reviewCount ? reviews.reduce((s, r) => s + r.rating, 0) / reviewCount : null;
   const recommendPct = reviewCount ? Math.round(reviews.filter(r => r.recommended).length / reviewCount * 100) : null;
@@ -58,12 +58,9 @@ async function init() {
   // Render tiles
   tilesEl.innerHTML = `
     <!-- Row 1: Name/photo + Rating -->
-    <div class="tile tile-beige" style="flex-direction:row; align-items:center; gap:1.5rem; min-height:140px;">
-      <img src="/images/default-teacher.svg" alt="${esc(teacher.name)}" style="width:80px;height:80px;border-radius:10px;flex-shrink:0;background:var(--blue);" width="80" height="80">
-      <div>
-        <div class="t-heading" style="font-size:clamp(1.8rem,4vw,3.5rem);">${esc(teacher.name)}</div>
-        <div style="color:var(--blue);font-size:0.95rem;margin-top:0.2rem;">${esc(teacher.department)}</div>
-      </div>
+    <div class="tile tile-beige" style="min-height:140px; justify-content:center;">
+      <div class="t-heading" style="font-size:clamp(2.2rem,8cqi,5rem);">${esc(teacher.name)}</div>
+      <div style="color:var(--blue);font-size:clamp(0.9rem,2cqi,1.1rem);margin-top:0.4rem;">${esc(teacher.department)}</div>
     </div>
     <div class="tile tile-blue" style="align-items:flex-start;">
       <div class="t-label">OVERALL QUALITY</div>
@@ -122,8 +119,9 @@ async function init() {
   `;
 
   // Render reviews
+  const publishedReviews = reviews.filter(r => r.published);
   reviewsTitle.textContent = `Feedback from ${reviewCount} Student${reviewCount !== 1 ? 's' : ''}`;
-  renderReviews(reviewsGrid, reviews);
+  renderReviews(reviewsGrid, publishedReviews);
 }
 
 function renderReviews(grid, reviews) {

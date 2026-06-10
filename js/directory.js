@@ -91,7 +91,6 @@ function deptTile(dept, teachers) {
     const rating = r ? ` <span class="teacher-rating">· ${r.avgRating}</span>` : '';
     return `
       <a href="/pages/teacher?name=${encodeURIComponent(t.name)}" class="dept-teacher-link">
-        <img src="/images/default-teacher.svg" alt="${esc(t.name)}" class="dept-teacher-photo" width="32" height="32">
         <span>${esc(t.name)}${rating}</span>
       </a>`;
   }).join('');
